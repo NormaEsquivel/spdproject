@@ -1,0 +1,4 @@
+RewriteEngine on
+ReWriteBase /spdproject/
+ReWriteCond $1 !^(index\.php|resources)
+ReWriteRule ^(.*)$ index.php/$1 [L]
