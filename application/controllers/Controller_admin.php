@@ -14,6 +14,8 @@ class Controller_admin extends CI_Controller {
 		$this->load->helper('string');
 		$this->load->library('encrypt');
 		$this->load->model('Model_admin');
+		$this->load->library('Pdf');
+		$this->load->library('PDF_MC_Table');
 	}
 
 	public function index()
@@ -351,6 +353,9 @@ class Controller_admin extends CI_Controller {
 			$data['rfc'] = $datosPersona[0]['RFC'];
 			$data['correoElectronico'] = $datosPersona[0]['correoElectronico'];
 			$data['telefonoCelular'] = $datosPersona[0]['telefonoCelular'];
+			$data['primerNombre'] = $datosPersona[0]['primerNombre'];
+			$data['primerApellido'] = $datosPersona[0]['primerApellido'];
+			$data['segundoApellido'] = $datosPersona[0]['segundoApellido'];
 		}
 		$this->load->view('Perfil',$data);
 	}
@@ -471,4 +476,61 @@ class Controller_admin extends CI_Controller {
 		$lista=$this->Model_admin->validarPermisos($tipoPersona);
 		print_r($lista);
 	}
+
+	public function comprobante()
+	{
+		# code...
+	}
+	public function fechas($fechaentera='')
+	{
+		$divf=explode('-', $fechaentera);
+		$dia=$divf[2];
+		$mes=$divf[1];
+		$anio=$divf[0];
+
+		switch ($mes) {
+			case '1':
+				$lafecha= $dia.' de Enero de '.$anio;
+			break;
+			case '2':
+				$lafecha= $dia.' de Febrero de '.$anio;
+			break;
+			case '3':
+				$lafecha= $dia.' de Marzo de '.$anio;
+			break;
+			case '4':
+				$lafecha= $dia.' de Abril de '.$anio;
+			break;
+			case '5':
+				$lafecha= $dia.' de Mayo de '.$anio;
+			break;
+			case '6':
+				$lafecha= $dia.' de Junio de '.$anio;
+			break;
+			case '7':
+				$lafecha= $dia.' de Julio de '.$anio;
+			break;
+			case '8':
+				$lafecha= $dia.' de Agosto de '.$anio;
+			break;
+			case '9':
+				$lafecha= $dia.' de Septiembre de '.$anio;
+			break;
+			case '10':
+				$lafecha= $dia.' de Octubre de '.$anio;
+			break;
+			case '11':
+				$lafecha= $dia.' de Noviembre de '.$anio;
+			break;
+			case '12':
+				$lafecha= $dia.' de Diciembre de '.$anio;
+			break;
+
+			default:
+			$lafecha="";
+		break;
+	}
+
+	return $lafecha;
+  }
 }

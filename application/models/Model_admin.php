@@ -397,9 +397,16 @@
 					'rfcant'=>$datosusu['rfc'],
 					'correoElectronicoant'=>$datosusu['email'],
 					'telefonoCelularant'=>$datosusu['phone'],
-					'Modificacion' => 1);
+					'Modificacion' => 1,
+					'primerNombre'=>$datosusu['Nombre'],
+					'primerApellido'=>$datosusu['Apaterno'],
+					'segundoApellido'=>$datosusu['AMaterno'],
+					'CURP'=>$datosusu['Curp'],
+					'RFC'=>$datosusu['rfc'],
+					'correoElectronico'=>$datosusu['email'],
+					'telefonoCelular'=>$datosusu['phone']);
 			}
-			
+			/*print_r($datosd);die;*/
 			if($datosd)
 			{
 				$datosfull=array_merge($datos, $datosd);

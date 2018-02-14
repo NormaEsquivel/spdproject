@@ -57,21 +57,23 @@ include('Header.php');
 Una vez realizados los ajustes presionar el bot&oacute;n de "Actualizar informaci&oacute;n" o si los datos son correctos, presionar el bot&oacute;n de "Guardar".</strong>
 							</div>
 							<i class="fa fa-user user-profile-icon"></i>
-							<label>Primer Apellido:</label> <input type="text" name="Apaterno" class="form-control" required="required" value="<?php echo $this->session->userdata('primerApellido');?>" maxlength="15">
+							<label>Primer Apellido:</label> <input type="text" name="Apaterno" class="form-control" required="required" value="<?php echo $primerApellido;?>" maxlength="15">
 							<i class="fa fa-user user-profile-icon"></i>
-							<label>Segundo Apellido:</label> <input type="text" name="AMaterno" class="form-control" required="required" value="<?php echo $this->session->userdata('segundoApellido');?>" maxlength="100">
+							<label>Segundo Apellido:</label> <input type="text" name="AMaterno" class="form-control" required="required" value="<?php echo $segundoApellido;?>" maxlength="100">
 							<i class="fa fa-user user-profile-icon"></i>
-							<label>Nombre(s):</label> <input type="text" name="Nombre" class="form-control" required="required" value="<?php echo $this->session->userdata('primerNombre');?>" maxlength="15">
+							<label>Nombre(s):</label> <input type="text" name="Nombre" class="form-control" required="required" value="<?php echo $primerNombre;?>" maxlength="15">
 
 							<ul class="list-unstyled user_data">
 								<li>
 									<i class="fa fa-barcode user-profile-icon"></i>
-									<label>CURP:</label> <input type="text" name="Curp" class="form-control" required="required" value="<?php echo $curp ?>" maxlength="18" disabled>
+									<label>CURP:</label> <input type="text" name="Curp" class="form-control" value="<?php echo $curp ?>" maxlength="18" disabled>
+									<input type="hidden" name="Curp" value="<?php echo $curp ?>">
 								</li>
 
 								<li class="m-top-xs">
 									<i class="fa fa-building user-profile-icon"></i> 
-									<label>R.F.C.:</label> <input type="text" name="rfc" class="form-control" required="required" value="<?php echo $rfc?>" maxlength="13" disabled>
+									<label>R.F.C.:</label> <input type="text" name="rfc" class="form-control" value="<?php echo $rfc?>" maxlength="13" disabled>
+									<input type="hidden" name="rfc" value="<?php echo $rfc?>">
 								</li>
 								<li class="m-top-xs">
 									<i class="fa fa-envelope-o user-profile-icon"></i> 
