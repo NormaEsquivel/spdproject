@@ -69,20 +69,20 @@
 				if(!empty($datos['nombreant']))
 				{
 					$datosd= array(
-					'CURP'=>$datos['curpant'],
-					'RFC'=>$datos['rfcant'],
-					'primerNombre'=>$datos['nombreant'],
-					'primerApellido'=>$datos['apellidopant'],
-					'segundoApellido'=>$datos['apellidomant'],
-					'correoElectronico'=>$datos['correoelectronicoant'],
-					'telefonoCelular'=>$datos['telefonoant'],
-					'primerNombreant'=>'',
-					'primerApellidoAnt'=>'',
-					'segundoApellidoAnt'=>'',
-					'Curpant'=>'',
-					'rfcant'=>'',
-					'correoElectronicoant'=>'',
-					'telefonoCelularant'=>'',
+					'CURP'=>$datos['curp'],
+					'RFC'=>$datos['rfc'],
+					'primerNombre'=>$datos['nombre'],
+					'primerApellido'=>$datos['apellidop'],
+					'segundoApellido'=>$datos['apellidom'],
+					'correoElectronico'=>$datos['correoelectronico'],
+					'telefonoCelular'=>$datos['telefono'],
+					'primerNombreant'=>$datos['nombreant'],
+					'primerApellidoAnt'=>$datos['apellidopant'],
+					'segundoApellidoAnt'=>$datos['apellidomant'],
+					'Curpant'=>$datos['curpant'],
+					'rfcant'=>$datos['rfcant'],
+					'correoElectronicoant'=>$datos['correoelectronicoant'],
+					'telefonoCelularant'=>$datos['telefonoant'],
 					'Modificacion' => 0);
 				}
 				else

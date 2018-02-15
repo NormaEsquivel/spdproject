@@ -70,14 +70,14 @@ class Controller_nivel extends CI_Controller {
 		$idPersona=$this->input->get_post('idPersona');
 
 		$inputssub=substr($inputs, 0, -1);
-		$inputsexp=explode(',', $inputssub);{}
+		$inputsexp=explode(',', $inputssub);
 
 		$arr1=array();
 		foreach ($inputsexp as $keyinex => $valueinex) {
 			$div=explode('|', $inputsexp[$keyinex]);
 			$arr1[$div[1]]=$div[0];
 		}
-
+		//print_r($arr1);die();
 		$arr2=array('idPersona'=>$idPersona, 'valor' =>$typein);
 		$arrayFULL=array_merge($arr1,$arr2);
 
