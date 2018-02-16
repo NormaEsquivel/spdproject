@@ -12,9 +12,9 @@
 		{
 			$this->db->select('*');
 			$this->db->from('tblpersona a');
-			$this->db->join('tblpersonatipoevaluacion b', 'a.idPersona=b.idPersona', 'join');
-			$this->db->join('tblpersonacct c', 'b.idPersona=c.idPersona', 'join');
-			$this->db->join('tblcct d', 'c.idCCT=d.idCCT', 'join');
+			$this->db->join('tblpersonatipoevaluacion b', 'a.idPersona=b.idPersona', 'inner');
+			$this->db->join('tblpersonacct c', 'b.idPersona=c.idPersona', 'inner');
+			$this->db->join('tblcct d', 'c.idCCT=d.idCCT', 'left');
 			$this->db->where('b.idTipoEvaluacion','7');
 			$this->db->where('d.NivelID',$this->session->userdata('NivelID'));
 			$query = $this->db->get();
@@ -87,7 +87,10 @@
 				}
 				else
 				{
-					$datosd = array('dtModificacion' => $fechaMod );
+					$datosd = array(
+						'CURP'=>$datos['curp'],
+						'RFC'=>$datos['rfc'],
+						'dtModificacion' => $fechaMod );
 				}
 			}
 			$this->db->where('idPersona', $datos['idPersona']);
@@ -118,8 +121,9 @@
 				foreach ($data as $d) {
 					//echo $d['idCCT'];
 					$director = $this->getDirector($d['idCCT'],$CE);
-					
-					array_push($d,@$director[0]);
+					$supervisor = $this->getSupervisor($d['CCT']);
+					array_push($d,@$director[0]);//meter directores
+					array_push($d,@$supervisor[0]);//meter supervisores
 					array_push($newarr,$d);
 					//print_r($newarr);
 				}
@@ -201,6 +205,37 @@
 			$this->db->where("pc.idCCT",$ctID);
 			$this->db->where("pc.idCicloEscolar",$CE);
 			$this->db->where("(p.IdTipoFuncion=2 or p.IdTipoFuncion=4)");
+			$query = $this->db->get();
+			$res = $query->num_rows();
+			if ($res > 0) {
+				$data =  $query->result_array();
+		    	return $data;
+			} else {
+				return array();
+			}
+			
+		}
+
+		public function getSupervisor($cct){
+			// $sql = "SELECT c.CCT,c.nombreCT,s.zona,concat(p.primerApellido,' ',p.segundoApellido,' ',p.primerNombre) AS Supervisor,
+			// p.CURP,p.RFC,concat('Calle ',p.Calle,' #',p.NumeroExt,' ',if((p.NumeroInt <> 0),concat(' int.',p.NumeroInt),''),' x ',p.Cruzamiento1,' y ',p.Cruzamiento2,', C.P. ',p.CodigoPostal) AS Direccion, 
+			// IF(p.telefonoCelular <> 0, p.telefonoCelular,p.telefono) AS Telefono,n.Nivel, 
+			// IF(ss.Subsistema IS null,'N/A',ss.Subsistema) AS Subsistema
+			// FROM tblcct c
+			// LEFT OUTER JOIN catsupervisores s ON c.NivelID = s.NivelID AND c.Zona = s.Zona
+			// LEFT OUTER JOIN tblpersona p ON s.PersonaID = p.idPersona
+			// LEFT OUTER JOIN tblcatniveles n ON n.NivelID = s.NivelID
+			// LEFT OUTER JOIN tblcatsubsistemas ss ON ss.SubsistemaID = s.SubsistemaID
+			// WHERE c.CCT = '31DPR0850Q'";
+
+			$this->db->select("c.CCT,c.nombreCT,s.zona,concat(p.primerApellido,' ',p.segundoApellido,' ',p.primerNombre,' ',p.segundoNombre) AS Supervisor,p.CURP,p.RFC, concat('Calle ',p.Calle,' #',p.NumeroExt,' ',if((p.NumeroInt <> 0),concat(' int.',p.NumeroInt),''),' x ',p.Cruzamiento1,' y ',p.Cruzamiento2,', C.P. ',p.CodigoPostal) AS Direccion,IF(p.telefonoCelular <> 0, p.telefonoCelular,p.telefono) AS Telefono,n.Nivel, IF(ss.Subsistema IS null,'N/A',ss.Subsistema) AS Subsistema");
+			$this->db->from('tblcct c');
+			$this->db->join("catsupervisores s","c.NivelID = s.NivelID AND c.Zona = s.Zona","INNER");
+			$this->db->join("tblpersona p","s.PersonaID = p.idPersona","INNER");
+			$this->db->join("tblcatniveles n","n.NivelID = s.NivelID","INNER");
+			$this->db->join("tblcatsubsistemas ss","ss.SubsistemaID = s.SubsistemaID","LEFT");
+			$this->db->limit(1);
+			$this->db->where("c.CCT",$cct);
 			$query = $this->db->get();
 			$res = $query->num_rows();
 			if ($res > 0) {

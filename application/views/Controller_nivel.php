@@ -70,14 +70,14 @@ class Controller_nivel extends CI_Controller {
 		$idPersona=$this->input->get_post('idPersona');
 
 		$inputssub=substr($inputs, 0, -1);
-		$inputsexp=explode(',', $inputssub);
+		$inputsexp=explode(',', $inputssub);{}
 
 		$arr1=array();
 		foreach ($inputsexp as $keyinex => $valueinex) {
 			$div=explode('|', $inputsexp[$keyinex]);
 			$arr1[$div[1]]=$div[0];
 		}
-		//print_r($arr1);die();
+
 		$arr2=array('idPersona'=>$idPersona, 'valor' =>$typein);
 		$arrayFULL=array_merge($arr1,$arr2);
 
@@ -93,6 +93,7 @@ class Controller_nivel extends CI_Controller {
 	}
 
 	public function getcts($PersonaID,$CE){//CE = año actual para pruebas esta en 2017
+		// echo "<pre>"; echo $PersonaID." | ".$CE;die();
 		$r = $this->Model_nivel->getcts($PersonaID,$CE);
         if (count($r) > 0) {
             return $r;
@@ -151,7 +152,7 @@ class Controller_nivel extends CI_Controller {
 	}
 
 	public function getDirector($ctID,$CE){
-		$r = $this->Model_nivel->getcts($ctID,3);
+		$r = $this->Model_nivel->getcts($ctID,$CE);
 		return $r;
 	}
 
