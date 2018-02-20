@@ -1,15 +1,7 @@
 <?php
 include('Header.php');
 ?>
-<script type="text/javascript">
-	function Confirma(){
-		var respuesta=confirm("He revisado la información y confirmo que mis datos son correctos");
-		if(respuesta==true)
 
-		else
-			return 0;
-	}
-</script>
 <div class="right_col" role="main">
 	<div class="">
 		<div class="page-title">
