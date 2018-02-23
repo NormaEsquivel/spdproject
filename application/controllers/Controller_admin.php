@@ -14,8 +14,6 @@ class Controller_admin extends CI_Controller {
 		$this->load->helper('string');
 		$this->load->library('encrypt');
 		$this->load->model('Model_admin');
-		$this->load->library('Pdf');
-		$this->load->library('PDF_MC_Table');
 	}
 
 	public function index()
@@ -342,10 +340,11 @@ class Controller_admin extends CI_Controller {
 		}
 	}
 
-	public function perfil()
+	public function perfil($cambio=0)
 	{
 		$data['raiz']=self::INDEX;
 		$data['menu']=$this->Model_admin->menu();
+		$data['cambio']=$cambio;
 		$datosPersona=$this->Model_admin->obtenerPersona();
 		if($datosPersona)
 		{
@@ -401,7 +400,7 @@ class Controller_admin extends CI_Controller {
 		    if (copy($_FILES['file']['tmp_name'],$destino)) {
 		    	
 				$this->session->set_userdata($datosUsu);
-		        redirect('miperfil');
+		        redirect('miperfil/1');
 		    } else {
 		        $status = "Error al subir el archivo";
 		    }
@@ -424,7 +423,7 @@ class Controller_admin extends CI_Controller {
 		}
 
 		print_r($status);
-		redirect('miperfil');
+		redirect('miperfil/1');
 	}
 
 	public function listaCCTs()
@@ -477,10 +476,6 @@ class Controller_admin extends CI_Controller {
 		print_r($lista);
 	}
 
-	public function comprobante()
-	{
-		# code...
-	}
 	public function fechas($fechaentera='')
 	{
 		$divf=explode('-', $fechaentera);
@@ -528,9 +523,17 @@ class Controller_admin extends CI_Controller {
 
 			default:
 			$lafecha="";
-		break;
-	}
+			break;
+		}
 
-	return $lafecha;
-  }
+		return $lafecha;
+  	}
+
+	public function listaNomina()
+	{
+		$data['raiz']=self::INDEX;
+		$data['arrNomina']=$this->Model_admin->listaNomnina();
+		$data['menu']=$this->Model_admin->menu();
+		$this->load->view('vistaNomina', $data);
+	}
 }

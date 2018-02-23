@@ -58,12 +58,13 @@ $route['resultados'] = 'Controller_admin/resultados';
 $route['modresultados'] = 'Controller_admin/modificarResultado';
 $route['importacionresult'] = 'Controller_admin/importacionresultados';
 $route['importando'] = 'Controller_admin/importandoExcel';
+$route['nomina'] = 'Controller_admin/listaNomina';
 /*--------Catalogo de docentes--------*/
 $route['agregaUsuario'] = 'Controller_catDocentes/holaMundo';
 
 /*----------Docente---------*/
 $route['historicoevaluaciones'] = 'Controller_docente';
-$route['miperfil'] = 'Controller_admin/perfil';
+$route['miperfil/(:num)'] = 'Controller_admin/perfil/$1';
 $route['up'] = 'Controller_admin/subirFotoPerfil';
 /*----------Nivel---------*/
 $route['modificaciones'] = 'Controller_nivel';

@@ -28,7 +28,9 @@ include('Header.php');
 						}
 						if($this->session->userdata('idTipoPersona')=="2")
 						{
-							$txt= "Para nosotros, es muy importante tener un acercamiento con usted, es por eso que esta plataforma nos ayudar&aacute; a mantenerlo actualizado sobre su informaci&oacute;n hist&oacute;rica sobre los proesos que se realizan y/o se han realizado.";
+							$txt= "Estimado(a) docente, para la Secretaría de Educación del Gobierno de Yucatán es necesario disponer de información válida y confiable que garantice la correcta evaluación del personal del Servicio Profesional Docente. El objetivo de esta plataforma es contar con una herramienta tecnológica que permita actualizar la información del personal docente, directivo, de supervisión y asesoría técnica pedagógica del estado de Yucatán.
+ 
+							Para actualizar su información, es necesario seleccionar su nombre, ubicado en la esquina superior derecha de la pantalla, y escoger la opción Perfil.";
 						}
 						?>
 							<li><?php echo $txt; ?></li>

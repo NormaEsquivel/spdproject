@@ -606,4 +606,20 @@
 		  	}
 		}
 
+		public function listaNomnina()
+		{
+			$this->db->select("*");
+			$this->db->from("tblnomina");
+			$query = $this->db->get();
+			$res = $query->num_rows();
+			if ($res>0){
+				$data =  $query->result_array();
+		    	return $data;
+			}
+			else{
+				//echo "<pre>"; echo "Ño";die();
+		    	return FALSE;
+		  	}
+		}
+
 	}

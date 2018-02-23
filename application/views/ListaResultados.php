@@ -117,7 +117,7 @@ $( function() {
                 </div>
               </div>
             </p>
-            <table id="datatable-buttons" class="table table-striped table-bordered">
+            <table id="datatable-checkbox" class="table table-striped table-bordered bulk_action">
               <thead>
                 <tr>
                   <th>#</th>
@@ -143,7 +143,7 @@ $( function() {
                 {
                   foreach ($ListaResultados as $keyliRe => $valuelire) {
                   	echo '
-                  	<tr>
+                    <tr>
                       <td>'.$ListaResultados[$keyliRe]['idPersona'].'</td>
                       <td>'.$ListaResultados[$keyliRe]['CURP'].'</td>
                       <td>'.$ListaResultados[$keyliRe]['RFC'].'</td>

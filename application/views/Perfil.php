@@ -48,6 +48,17 @@ include('Header.php');
 								<strong>Estimado docente, favor de revisar sus datos y si es necesario realizar los cambios pertinentes. En caso de detectar que el RFC y/o CURP son incorrectos, favor de acudir a su nivel educativo, con los documentos probatorios correspondientes, para realizar la modificaci&oacute;n.
 Una vez realizados los ajustes presionar el bot&oacute;n de "Actualizar informaci&oacute;n" o si los datos son correctos, presionar el bot&oacute;n de "Guardar".</strong>
 							</div>
+							<?php
+							if($cambio==1)
+							{
+								echo '<div class="alert alert-danger alert-dismissible fade in" role="alert">
+								<center><strong>¡Ha concluido satisfactoriamente la actualización de su información!
+								Por favor responda una breve encuesta, útil para mejorar el funcionamiento de la Plataforma.
+								</strong>
+								<h3><a target="_blank" href="https://docs.google.com/forms/d/e/1FAIpQLScNjeHXLLKNWZXNmMxRnhQokcgsaXOKYTt_1S25e6OkAbeOJg/viewform?usp=sf_link">Presione aquí para ingresar a la encuesta.</a></h3></center>
+							</div>';
+							}
+							?>
 							<i class="fa fa-user user-profile-icon"></i>
 							<label>Primer Apellido:</label> <input type="text" name="Apaterno" class="form-control" required="required" value="<?php echo $primerApellido;?>" maxlength="15">
 							<i class="fa fa-user user-profile-icon"></i>
@@ -79,6 +90,9 @@ Una vez realizados los ajustes presionar el bot&oacute;n de "Actualizar informac
 							<br />
 							<br>
 							<div class="text-center">
+								<button type="submit" class="btn btn-app">
+									<i class="fa fa-save"></i> Actualizar información
+								</button>
 								<button type="submit" class="btn btn-app">
 									<i class="fa fa-save"></i> Guardar
 								</button>
